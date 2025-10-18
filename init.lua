@@ -21,7 +21,7 @@ vim.opt.splitbelow = true
 
 -- Folding
 vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldenable = false
 
 -- Display invisible chars (I only really want trailing space)
@@ -118,7 +118,8 @@ vim.keymap.set(
 -- Buffer management
 vim.keymap.set("n", "<leader>bd", "<cmd>bd<CR>", { desc = "Close buffer" })
 
--- Config quick reload
+-- Config file
+vim.keymap.set("n", "<leader>ce", ":e $MYVIMRC<CR>", { desc = "Edit config file" })
 vim.keymap.set("n", "<leader>cr", ":luafile $MYVIMRC<CR>", { desc = "Source config file" })
 
 -- Telescope
@@ -247,6 +248,23 @@ require("nvim-tree").setup({
     vim.keymap.set("n", "x",              api.fs.cut,                         opts("Cut"))
     vim.keymap.set("n", "<2-LeftMouse>",  api.node.open.edit,                 opts("Open"))
   end,
+})
+
+require("nvim-treesitter.configs").setup({
+  highlight = {
+    enable = true,
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+  incremental_selection = {
+    enable = false,
+  },
+  indent = {
+    enable = false,
+  },
 })
 
 
