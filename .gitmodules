@@ -10,3 +10,6 @@
 [submodule "pack/treesitter/start/nvim-treesitter"]
 	path = pack/treesitter/start/nvim-treesitter
 	url = https://github.com/nvim-treesitter/nvim-treesitter.git
+[submodule "pack/gitsigns/start/gitsigns.nvim"]
+	path = pack/gitsigns/start/gitsigns.nvim
+	url = https://github.com/lewis6991/gitsigns.nvim.git
