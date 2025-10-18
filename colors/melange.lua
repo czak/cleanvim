@@ -80,22 +80,11 @@ local b = palette.b -- Bright foreground colors
 local c = palette.c -- Foreground colors
 local d = palette.d -- Background colors
 
-local bold, italic, underline, undercurl, strikethrough
-if vim.g.melange_enable_font_variants == true or vim.g.melange_enable_font_variants == nil then
-  --- Enable all font attributes by default
-  bold = true
-  italic = true
-  underline = true
-  undercurl = true
-  strikethrough = true
-elseif type(vim.g.melange_enable_font_variants) == 'table' then
-  --- Enable only selected font attributes
-  bold = vim.g.melange_enable_font_variants.bold
-  italic = vim.g.melange_enable_font_variants.italic
-  underline = vim.g.melange_enable_font_variants.underline
-  undercurl = vim.g.melange_enable_font_variants.undercurl
-  strikethrough = vim.g.melange_enable_font_variants.strikethrough
-end
+local bold = false
+local italic = false
+local underline = true
+local undercurl = true
+local strikethrough = true
 
 for name, attrs in pairs {
   ---- :help highlight-default -------------------------------
