@@ -20,8 +20,9 @@ vim.opt.splitright = true
 vim.opt.splitbelow = true
 
 -- Folding
-vim.opt.foldmethod = "syntax"
 vim.opt.foldenable = true
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldlevel = 99
 
 -- Display invisible chars (I only really want trailing space)
@@ -60,7 +61,8 @@ vim.opt.completeopt = "menuone,noinsert,noselect"
 vim.opt.showmode = false
 vim.opt.pumheight = 10
 vim.opt.pumblend = 10
-vim.opt.winblend = 0
+vim.opt.winblend = 10
+vim.opt.winborder = "rounded"
 
 
 -- ----------------------------------------
@@ -97,6 +99,14 @@ end, { desc = "Next diagnostic" })
 vim.keymap.set("n", "[d", function()
   vim.diagnostic.jump({ count = -1, float = true })
 end, { desc = "Previous diagnostic" })
+
+-- Trying out a smart fold
+vim.keymap.set('n', 'zm', function()
+  if vim.o.foldlevel == 99 then
+    vim.cmd('normal! zR')
+  end
+  vim.cmd('normal! zm')
+end, { desc = "Fold more, resetting if maxed" })
 
 -- Save
 vim.keymap.set("n", "<C-s>", "<cmd>w<CR>", { desc = "Save file" })
@@ -252,4 +262,10 @@ require("nvim-tree").setup({
     vim.keymap.set("n", "x",              api.fs.cut,                         opts("Cut"))
     vim.keymap.set("n", "<2-LeftMouse>",  api.node.open.edit,                 opts("Open"))
   end,
+})
+
+require("nvim-treesitter.configs").setup({
+  highlight = {
+    enable = true,
+  },
 })
