@@ -149,6 +149,7 @@ vim.keymap.set('n', '\\', "<cmd>NvimTreeToggle<cr>", { desc = "Toggle nvim-tree"
 -- :lua vim.cmd('tabnew ' .. vim.lsp.get_log_path())
 
 vim.lsp.enable({
+  "gopls",
   "lua_ls",
   "rubocop",
   "ruby_lsp",
