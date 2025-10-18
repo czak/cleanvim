@@ -1,6 +1,27 @@
 return {
   cmd = { 'ruby-lsp' },
   filetypes = { 'ruby', 'eruby' },
-  init_options = { formatter = "auto" },
+  init_options = {
+    enabledFeatures = {
+      "codeActions",
+      "codeLens",
+      "completion",
+      "definition",
+      "diagnostics",
+      -- "documentHighlights",
+      "documentLink",
+      "documentSymbols",
+      "foldingRanges",
+      "formatting",
+      "hover",
+      "inlayHint",
+      "onTypeFormatting",
+      "selectionRanges",
+      -- "semanticHighlighting",
+      "signatureHelp",
+      "typeHierarchy",
+      "workspaceSymbol",
+    },
+  },
   root_markers = { "Gemfile", ".git" },
 }
