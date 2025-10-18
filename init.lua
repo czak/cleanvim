@@ -118,6 +118,19 @@ vim.keymap.set(
 -- Buffer management
 vim.keymap.set("n", "<leader>bd", "<cmd>bd<CR>", { desc = "Close buffer" })
 
+-- Config quick reload
+vim.keymap.set("n", "<leader>cr", "<cmd>so %<CR>", { desc = "Source config file" })
+
+-- Telescope
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader><leader>', builtin.find_files, { desc = 'Telescope find files' })
+vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = 'Telescope live grep' })
+vim.keymap.set('n', '<leader>sb', builtin.buffers, { desc = 'Telescope buffers' })
+vim.keymap.set('n', '<leader>ss', builtin.pickers, { desc = 'Telescope live grep' })
+
+-- nvim-tree
+vim.keymap.set('n', '\\', "<cmd>NvimTreeToggle<cr>", { desc = "Toggle nvim-tree" })
+
 
 -- ----------------------------------------
 -- LSP and diagnostics
@@ -152,25 +165,12 @@ vim.diagnostic.config({
 	},
 })
 
--- LSP keymaps
-vim.api.nvim_create_autocmd("LspAttach", {
-	group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
-	callback = function(event)
-		-- local map = function(keys, func, desc, mode)
-		-- 	mode = mode or "n"
-		-- 	vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = desc })
-		-- end
 
-    -- map("<leader>cn", vim.lsp.buf.rename, "Rename")
-		-- map("<leader>ca", vim.lsp.buf.code_action, "Code action", { "n", "x" })
-		-- map("<leader>cr", require("telescope.builtin").lsp_references, "References")
-		-- map("<leader>ci", require("telescope.builtin").lsp_implementations, "Implementation")
-		-- map("<leader>cd", require("telescope.builtin").lsp_definitions, "Definition")
-		-- map("<leader>cD", vim.lsp.buf.declaration, "Declaration")
-		-- map("<leader>co", require("telescope.builtin").lsp_document_symbols, "Document symbols")
-		-- map("<leader>cw", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Workspace symbols")
-		-- map("<leader>ct", require("telescope.builtin").lsp_type_definitions, "Type definition")
-	end,
-})
+-- ----------------------------------------
+-- Plugins
+-- ----------------------------------------
+
+require("nvim-tree").setup()
+
 
 -- vim: ts=2 sts=2 sw=2 et
