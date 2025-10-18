@@ -22,7 +22,7 @@ vim.opt.splitbelow = true
 -- Folding
 vim.opt.foldmethod = "syntax"
 vim.opt.foldenable = true
-vim.opt.foldlevelstart = 99
+vim.opt.foldlevel = 99
 
 -- Display invisible chars (I only really want trailing space)
 vim.opt.list = true
@@ -140,10 +140,16 @@ vim.keymap.set('n', '\\', "<cmd>NvimTreeToggle<cr>", { desc = "Toggle nvim-tree"
 local augroup = vim.api.nvim_create_augroup("UserConfig", { clear = true })
 
 -- Open all folds to max depth on file open
-vim.api.nvim_create_autocmd("BufWinEnter", {
+vim.api.nvim_create_autocmd("BufReadPre", {
   group = augroup,
   pattern = "*",
-  command = "normal! zR",
+  callback = function()
+    -- HACK: defer the command until after buffer is fully processed (?)
+    --       otherwise we're stuck at foldlevel=0
+    vim.schedule(function()
+      vim.cmd("normal! zR")
+    end)
+  end,
 })
 
 
