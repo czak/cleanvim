@@ -148,13 +148,42 @@ vim.keymap.set('n', '\\', "<cmd>NvimTreeToggle<cr>", { desc = "Toggle nvim-tree"
 -- Then open log with:
 -- :lua vim.cmd('tabnew ' .. vim.lsp.get_log_path())
 
+-- See capabilities for a given server, do this in an LSP-enabled buffer:
+-- :lua =vim.lsp.get_clients()[1].server_capabilities
+
 vim.lsp.enable({
   "gopls",
   "lua_ls",
-  "rubocop",
+  -- "rubocop", -- ruby_lsp invokes Rubocop too
   "ruby_lsp",
   "tailwindcss",
   "vtsls",
+})
+
+-- See https://neovim.io/doc/user/lsp.html#lsp-attach
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('my.lsp', {}),
+  callback = function(args)
+    local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+
+    -- Enable auto-completion
+    if client:supports_method('textDocument/completion') then
+      vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
+    end
+
+    -- Auto-format ("lint") on save.
+    -- Usually not needed if server supports "textDocument/willSaveWaitUntil".
+    if not client:supports_method('textDocument/willSaveWaitUntil')
+        and client:supports_method('textDocument/formatting') then
+      vim.api.nvim_create_autocmd('BufWritePre', {
+        group = vim.api.nvim_create_augroup('my.lsp', { clear = false }),
+        buffer = args.buf,
+        callback = function()
+          vim.lsp.buf.format({ bufnr = args.buf, id = client.id, timeout_ms = 1000 })
+        end,
+      })
+    end
+  end,
 })
 
 vim.diagnostic.config({
@@ -230,34 +259,34 @@ require("nvim-tree").setup({
     end
 
     -- See :help nvim-tree-mappings-default
-    vim.keymap.set("n", "<C-t>",          api.node.open.tab,                  opts("Open: New Tab"))
-    vim.keymap.set("n", "<C-v>",          api.node.open.vertical,             opts("Open: Vertical Split"))
-    vim.keymap.set("n", "<C-x>",          api.node.open.horizontal,           opts("Open: Horizontal Split"))
-    vim.keymap.set("n", "<BS>",           api.node.navigate.parent_close,     opts("Close Directory"))
-    vim.keymap.set("n", "<CR>",           api.node.open.edit,                 opts("Open"))
-    vim.keymap.set("n", "-",              api.tree.change_root_to_parent,     opts("Up"))
-    vim.keymap.set("n", "a",              api.fs.create,                      opts("Create File Or Directory"))
-    vim.keymap.set("n", "c",              api.fs.copy.node,                   opts("Copy"))
-    vim.keymap.set("n", "d",              api.fs.remove,                      opts("Delete"))
-    vim.keymap.set("n", "E",              api.tree.expand_all,                opts("Expand All"))
-    vim.keymap.set("n", "F",              api.live_filter.clear,              opts("Live Filter: Clear"))
-    vim.keymap.set("n", "f",              api.live_filter.start,              opts("Live Filter: Start"))
-    vim.keymap.set("n", "g?",             api.tree.toggle_help,               opts("Help"))
-    vim.keymap.set("n", "h",              api.node.navigate.parent_close,     opts("Close Directory"))
-    vim.keymap.set("n", "H",              api.tree.toggle_hidden_filter,      opts("Toggle Filter: Dotfiles"))
-    vim.keymap.set("n", "I",              api.tree.toggle_gitignore_filter,   opts("Toggle Filter: Git Ignore"))
-    vim.keymap.set("n", "K",              api.node.show_info_popup,           opts("Info"))
-    vim.keymap.set("n", "l",              api.node.open.edit,                 opts("Open"))
-    vim.keymap.set("n", "o",              api.node.open.edit,                 opts("Open"))
+    vim.keymap.set("n", "<C-t>", api.node.open.tab, opts("Open: New Tab"))
+    vim.keymap.set("n", "<C-v>", api.node.open.vertical, opts("Open: Vertical Split"))
+    vim.keymap.set("n", "<C-x>", api.node.open.horizontal, opts("Open: Horizontal Split"))
+    vim.keymap.set("n", "<BS>", api.node.navigate.parent_close, opts("Close Directory"))
+    vim.keymap.set("n", "<CR>", api.node.open.edit, opts("Open"))
+    vim.keymap.set("n", "-", api.tree.change_root_to_parent, opts("Up"))
+    vim.keymap.set("n", "a", api.fs.create, opts("Create File Or Directory"))
+    vim.keymap.set("n", "c", api.fs.copy.node, opts("Copy"))
+    vim.keymap.set("n", "d", api.fs.remove, opts("Delete"))
+    vim.keymap.set("n", "E", api.tree.expand_all, opts("Expand All"))
+    vim.keymap.set("n", "F", api.live_filter.clear, opts("Live Filter: Clear"))
+    vim.keymap.set("n", "f", api.live_filter.start, opts("Live Filter: Start"))
+    vim.keymap.set("n", "g?", api.tree.toggle_help, opts("Help"))
+    vim.keymap.set("n", "h", api.node.navigate.parent_close, opts("Close Directory"))
+    vim.keymap.set("n", "H", api.tree.toggle_hidden_filter, opts("Toggle Filter: Dotfiles"))
+    vim.keymap.set("n", "I", api.tree.toggle_gitignore_filter, opts("Toggle Filter: Git Ignore"))
+    vim.keymap.set("n", "K", api.node.show_info_popup, opts("Info"))
+    vim.keymap.set("n", "l", api.node.open.edit, opts("Open"))
+    vim.keymap.set("n", "o", api.node.open.edit, opts("Open"))
     -- vim.keymap.set("n", "o",              api.node.open.no_window_picker,     opts("Open: No Window Picker"))
-    vim.keymap.set("n", "p",              api.fs.paste,                       opts("Paste"))
-    vim.keymap.set("n", "q",              api.tree.close,                     opts("Close"))
+    vim.keymap.set("n", "p", api.fs.paste, opts("Paste"))
+    vim.keymap.set("n", "q", api.tree.close, opts("Close"))
     -- vim.keymap.set("n", "r",              api.fs.rename,                      opts("Rename"))
-    vim.keymap.set("n", "r",              api.fs.rename_full,                 opts("Rename"))
-    vim.keymap.set("n", "R",              api.tree.reload,                    opts("Refresh"))
-    vim.keymap.set("n", "W",              api.tree.collapse_all,              opts("Collapse All"))
-    vim.keymap.set("n", "x",              api.fs.cut,                         opts("Cut"))
-    vim.keymap.set("n", "<2-LeftMouse>",  api.node.open.edit,                 opts("Open"))
+    vim.keymap.set("n", "r", api.fs.rename_full, opts("Rename"))
+    vim.keymap.set("n", "R", api.tree.reload, opts("Refresh"))
+    vim.keymap.set("n", "W", api.tree.collapse_all, opts("Collapse All"))
+    vim.keymap.set("n", "x", api.fs.cut, opts("Cut"))
+    vim.keymap.set("n", "<2-LeftMouse>", api.node.open.edit, opts("Open"))
   end,
 })
 
