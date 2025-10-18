@@ -117,7 +117,7 @@ for name, attrs in pairs {
   CursorLine = 'ColorColumn',
   WinSeparator = { fg = a.ui },
 
-  LineNr = { fg = a.ui },
+  LineNr = 'CursorLine',
   -- LineNrAbove = {},
   -- LineNrBelow = {},
   CursorLineNr = { fg = c.yellow },
@@ -125,8 +125,8 @@ for name, attrs in pairs {
   -- CursorLineSign = {},
 
   Folded = { fg = a.com, bg = d.cyan },
-  FoldColumn = 'LineNr',
-  SignColumn = 'LineNr',
+  FoldColumn = 'CursorLine',
+  SignColumn = 'CursorLine',
 
   Pmenu = 'NormalFloat',
   PmenuSel = { bg = a.sel },
@@ -160,8 +160,8 @@ for name, attrs in pairs {
   -- VisualNOS = {},
 
   Conceal = { fg = a.com },
-  Whitespace = { fg = a.ui },
-  -- EndOfBuffer = {},
+  Whitespace = { fg = a.sel },
+  EndOfBuffer = { fg = a.ui },
   NonText = 'Whitespace',
   SpecialKey = 'Whitespace',
 
