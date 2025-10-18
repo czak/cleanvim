@@ -91,15 +91,6 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 -- Pasting in visual mode
 vim.keymap.set("v", "p", "P")
 
--- Navigate diagnostics with floating window
-vim.keymap.set("n", "]d", function()
-  vim.diagnostic.jump({ count = 1, float = true })
-end, { desc = "Next diagnostic" })
-
-vim.keymap.set("n", "[d", function()
-  vim.diagnostic.jump({ count = -1, float = true })
-end, { desc = "Previous diagnostic" })
-
 -- Trying out a smart fold
 vim.keymap.set('n', 'zm', function()
   if vim.o.foldlevel == 99 then
@@ -167,9 +158,14 @@ vim.lsp.enable({
 
 vim.diagnostic.config({
   severity_sort = true,
-  float = { border = "rounded", source = "if_many" },
+  float = {
+    border = "rounded",
+    source = "if_many",
+  },
   underline = true,
-  virtual_text = false,
+  virtual_text = {
+    current_line = true,
+  },
   signs = {
     text = {
       [vim.diagnostic.severity.ERROR] = "E",
