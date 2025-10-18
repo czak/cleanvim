@@ -123,7 +123,7 @@ vim.keymap.set("n", "<leader>cr", ":luafile $MYVIMRC<CR>", { desc = "Source conf
 
 -- Telescope
 local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader><leader>', builtin.find_files, { desc = 'Telescope find files' })
+vim.keymap.set('n', '<leader><leader>', builtin.git_files, { desc = 'Telescope find files' })
 vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = 'Telescope live grep' })
 vim.keymap.set('n', '<leader>sb', builtin.buffers, { desc = 'Telescope buffers' })
 vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = 'Telescope live grep' })
@@ -169,6 +169,27 @@ vim.diagnostic.config({
 -- ----------------------------------------
 -- Plugins
 -- ----------------------------------------
+
+local telescope_actions = require("telescope.actions")
+
+require("telescope").setup({
+  defaults = {
+    mappings = {
+      i = {
+        ["<Esc>"] = telescope_actions.close
+      },
+    },
+  },
+  pickers = {
+    buffers = {
+      mappings = {
+        i = {
+          ["<C-d>"] = telescope_actions.delete_buffer + telescope_actions.move_to_top,
+        }
+      }
+    }
+  }
+})
 
 require("nvim-tree").setup({
   renderer = {
