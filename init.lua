@@ -132,25 +132,8 @@ vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = 'Telescope live grep
 -- nvim-tree
 vim.keymap.set('n', '\\', "<cmd>NvimTreeToggle<cr>", { desc = "Toggle nvim-tree" })
 
-
--- ----------------------------------------
--- Autocommands
--- ----------------------------------------
-
-local augroup = vim.api.nvim_create_augroup("UserConfig", { clear = true })
-
--- Open all folds to max depth on file open
-vim.api.nvim_create_autocmd("BufReadPre", {
-  group = augroup,
-  pattern = "*",
-  callback = function()
-    -- HACK: defer the command until after buffer is fully processed (?)
-    --       otherwise we're stuck at foldlevel=0
-    vim.schedule(function()
-      vim.cmd("normal! zR")
-    end)
-  end,
-})
+-- HACK: Disable vim-ruby binding which interferes with LSP and tagfunc handling
+vim.keymap.set("n", "<C-]>", "<C-]>")
 
 
 -- ----------------------------------------
