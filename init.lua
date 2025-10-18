@@ -174,9 +174,13 @@ local telescope_actions = require("telescope.actions")
 
 require("telescope").setup({
   defaults = {
+    layout_strategy = 'vertical',
+    layout_config = {
+      vertical = { width = 0.95, height = 0.95 },
+    },
     mappings = {
       i = {
-        ["<Esc>"] = telescope_actions.close
+        ["<Esc>"] = telescope_actions.close,
       },
     },
   },
