@@ -70,6 +70,9 @@ vim.opt.winblend = 0
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- Prevent vim-ruby from setting custom mappings
+vim.g.no_ruby_maps = true
+
 -- Navigate visual lines instead of logical lines
 vim.keymap.set("n", "j", "gj")
 vim.keymap.set("n", "k", "gk")
@@ -131,9 +134,6 @@ vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = 'Telescope live grep
 
 -- nvim-tree
 vim.keymap.set('n', '\\', "<cmd>NvimTreeToggle<cr>", { desc = "Toggle nvim-tree" })
-
--- HACK: Disable vim-ruby binding which interferes with LSP and tagfunc handling
-vim.keymap.set("n", "<C-]>", "<C-]>")
 
 
 -- ----------------------------------------
