@@ -119,7 +119,7 @@ vim.keymap.set(
 vim.keymap.set("n", "<leader>bd", "<cmd>bd<CR>", { desc = "Close buffer" })
 
 -- Config quick reload
-vim.keymap.set("n", "<leader>cr", "<cmd>so %<CR>", { desc = "Source config file" })
+vim.keymap.set("n", "<leader>cr", ":luafile $MYVIMRC<CR>", { desc = "Source config file" })
 
 -- Telescope
 local builtin = require('telescope.builtin')
