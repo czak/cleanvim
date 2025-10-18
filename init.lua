@@ -62,7 +62,7 @@ vim.opt.showmode = false
 vim.opt.pumheight = 10
 vim.opt.pumblend = 10
 vim.opt.winblend = 10
-vim.opt.winborder = "rounded"
+vim.opt.winborder = "single"
 
 
 -- ----------------------------------------
