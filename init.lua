@@ -21,7 +21,8 @@ vim.opt.splitbelow = true
 
 -- Folding
 vim.opt.foldmethod = "syntax"
-vim.opt.foldenable = false
+vim.opt.foldenable = true
+vim.opt.foldlevelstart = 99
 
 -- Display invisible chars (I only really want trailing space)
 vim.opt.list = true
@@ -130,6 +131,20 @@ vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = 'Telescope live grep
 
 -- nvim-tree
 vim.keymap.set('n', '\\', "<cmd>NvimTreeToggle<cr>", { desc = "Toggle nvim-tree" })
+
+
+-- ----------------------------------------
+-- Autocommands
+-- ----------------------------------------
+
+local augroup = vim.api.nvim_create_augroup("UserConfig", { clear = true })
+
+-- Open all folds to max depth on file open
+vim.api.nvim_create_autocmd("BufWinEnter", {
+  group = augroup,
+  pattern = "*",
+  command = "normal! zR",
+})
 
 
 -- ----------------------------------------
