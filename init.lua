@@ -189,7 +189,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 vim.diagnostic.config({
   severity_sort = true,
   float = {
-    border = "rounded",
+    border = "single",
     source = "if_many",
   },
   underline = true,
