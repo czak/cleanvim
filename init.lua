@@ -167,7 +167,7 @@ vim.lsp.enable({
 
 vim.diagnostic.config({
   severity_sort = true,
-  float = { border = "none", source = "if_many" },
+  float = { border = "rounded", source = "if_many" },
   underline = true,
   virtual_text = false,
   signs = {
