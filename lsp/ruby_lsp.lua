@@ -22,6 +22,11 @@ return {
       "typeHierarchy",
       "workspaceSymbol",
     },
+    addonSettings = {
+      ["Ruby LSP Rails"] = {
+        enablePendingMigrationsPrompt = false,
+      },
+    },
   },
   root_markers = { "Gemfile", ".git" },
 }
