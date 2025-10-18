@@ -88,11 +88,11 @@ vim.keymap.set("v", "p", "P")
 
 -- Navigate diagnostics with floating window
 vim.keymap.set("n", "]d", function()
-	vim.diagnostic.jump({ count = 1, float = true })
+  vim.diagnostic.jump({ count = 1, float = true })
 end, { desc = "Next diagnostic" })
 
 vim.keymap.set("n", "[d", function()
-	vim.diagnostic.jump({ count = -1, float = true })
+  vim.diagnostic.jump({ count = -1, float = true })
 end, { desc = "Previous diagnostic" })
 
 -- Save
@@ -104,15 +104,15 @@ vim.keymap.set("n", "<leader>qq", "<cmd>qa<CR>", { desc = "Quit application" })
 
 -- Toggle background
 vim.keymap.set("n", "<leader>tb", function()
-	vim.opt.background = vim.opt.background:get() == "dark" and "light" or "dark"
+  vim.opt.background = vim.opt.background:get() == "dark" and "light" or "dark"
 end, { desc = "Toggle background" })
 
 -- Lazygit
 vim.keymap.set(
-	"n",
-	"<leader>gg",
-	":silent !tmux popup -d <C-r>=getcwd()<cr> -w 100\\% -h 100\\% -E lazygit<cr>",
-	{ desc = "Lazygit" }
+  "n",
+  "<leader>gg",
+  ":silent !tmux popup -d <C-r>=getcwd()<cr> -w 100\\% -h 100\\% -E lazygit<cr>",
+  { desc = "Lazygit" }
 )
 
 -- Buffer management
@@ -153,18 +153,18 @@ vim.lsp.enable({
 })
 
 vim.diagnostic.config({
-	severity_sort = true,
-	float = { border = "none", source = "if_many" },
-	underline = true,
-	virtual_text = false,
-	signs = {
-		text = {
-			[vim.diagnostic.severity.ERROR] = "E",
-			[vim.diagnostic.severity.WARN] = "W",
-			[vim.diagnostic.severity.INFO] = "I",
-			[vim.diagnostic.severity.HINT] = "H",
-		},
-	},
+  severity_sort = true,
+  float = { border = "none", source = "if_many" },
+  underline = true,
+  virtual_text = false,
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = "E",
+      [vim.diagnostic.severity.WARN] = "W",
+      [vim.diagnostic.severity.INFO] = "I",
+      [vim.diagnostic.severity.HINT] = "H",
+    },
+  },
 })
 
 
