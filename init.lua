@@ -141,7 +141,7 @@ vim.keymap.set('n', '\\', "<cmd>NvimTreeToggle<cr>", { desc = "Toggle nvim-tree"
 
 
 -- ----------------------------------------
--- LSP and diagnostics
+-- LSP
 -- ----------------------------------------
 
 -- Enable verbose log from lsp:
@@ -189,6 +189,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
+
+-- ----------------------------------------
+-- Diagnostics
+-- ----------------------------------------
+
 vim.diagnostic.config({
   severity_sort = true,
   float = {
@@ -207,6 +212,22 @@ vim.diagnostic.config({
       [vim.diagnostic.severity.HINT] = "H",
     },
   },
+})
+
+
+-- ----------------------------------------
+-- Treesitter
+-- ----------------------------------------
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = '*',
+  callback = function(args)
+    -- args.match contains the detected filetype (e.g., "lua", "ruby")
+    -- This function returns true if a parser can be loaded.
+    if vim.treesitter.language.add(args.match) then
+      vim.treesitter.start(args.buf)
+    end
+  end,
 })
 
 
