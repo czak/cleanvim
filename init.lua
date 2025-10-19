@@ -232,6 +232,8 @@ require("telescope").setup({
       i = {
         ["<Esc>"] = telescope_actions.close,
         ["<C-f>"] = telescope_actions.to_fuzzy_refine,
+        ["<C-q>"] = telescope_actions.send_to_qflist + telescope_actions.open_qflist,
+        ["<C-S-q>"] = telescope_actions.send_selected_to_qflist + telescope_actions.open_qflist,
       },
     },
   },
