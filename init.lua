@@ -70,6 +70,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Prevent vim-ruby from setting custom mappings
+-- (mostly due to conflicting <C-]> mapping)
 vim.g.no_ruby_maps = true
 
 -- Navigate visual lines instead of logical lines
