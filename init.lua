@@ -372,7 +372,7 @@ require("gitsigns").setup({
     vim.keymap.set('n', '<leader>hq', gitsigns.setqflist, opts("Hunks to QuickList: all files"))
 
     -- Toggles
-    vim.keymap.set('n', '<leader>tb', gitsigns.toggle_current_line_blame, opts("Toggle current line blame"))
+    vim.keymap.set('n', '<leader>tg', gitsigns.toggle_current_line_blame, opts("Toggle current line blame"))
     vim.keymap.set('n', '<leader>tw', gitsigns.toggle_word_diff, opts("Toggle word diff"))
 
     -- Text object
