@@ -216,22 +216,6 @@ vim.diagnostic.config({
 
 
 -- ----------------------------------------
--- Treesitter
--- ----------------------------------------
-
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = '*',
-  callback = function(args)
-    -- args.match contains the detected filetype (e.g., "lua", "ruby")
-    -- This function returns true if a parser can be loaded.
-    if vim.treesitter.language.add(args.match) then
-      vim.treesitter.start(args.buf)
-    end
-  end,
-})
-
-
--- ----------------------------------------
 -- Plugins
 -- ----------------------------------------
 
@@ -381,6 +365,17 @@ require("gitsigns").setup({
     vim.keymap.set({ 'o', 'x' }, 'ih', gitsigns.select_hunk, opts("Select hunk"))
   end
 })
+
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true,
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+}
 
 require("bufferline").setup({
   options = {
