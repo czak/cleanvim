@@ -293,12 +293,6 @@ require("nvim-tree").setup({
   end,
 })
 
-require("nvim-treesitter.configs").setup({
-  highlight = {
-    enable = true,
-  },
-})
-
 require("gitsigns").setup({
   -- See https://github.com/lewis6991/gitsigns.nvim?tab=readme-ov-file#-keymaps
   on_attach = function(bufnr)
