@@ -38,9 +38,6 @@ vim.opt.confirm = true
 vim.opt.path:append("**")
 
 -- Indentation
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.expandtab = true
 vim.opt.smartindent = true
 vim.opt.breakindent = false
 
