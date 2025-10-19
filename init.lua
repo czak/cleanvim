@@ -135,6 +135,7 @@ vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = 'Telescope help ta
 vim.keymap.set('n', '<leader>sb', builtin.buffers, { desc = 'Telescope buffers' })
 vim.keymap.set('n', '<leader>so', builtin.oldfiles, { desc = 'Telescope oldfiles' })
 vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = 'Telescope live grep' })
+vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = 'Telescope resume' })
 
 -- nvim-tree
 vim.keymap.set('n', '\\', "<cmd>NvimTreeToggle<cr>", { desc = "Toggle nvim-tree" })
@@ -223,9 +224,9 @@ local telescope_actions = require("telescope.actions")
 
 require("telescope").setup({
   defaults = {
-    layout_strategy = 'vertical',
     layout_config = {
       vertical = { width = 0.95, height = 0.95 },
+      horizontal = { width = 0.95, height = 0.95 },
     },
     mappings = {
       i = {
@@ -237,7 +238,7 @@ require("telescope").setup({
     buffers = {
       mappings = {
         i = {
-          ["<C-d>"] = telescope_actions.delete_buffer + telescope_actions.move_to_top,
+          ["<C-d>"] = telescope_actions.delete_buffer,
         }
       }
     }
