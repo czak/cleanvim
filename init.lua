@@ -116,7 +116,7 @@ end, { desc = "Toggle background" })
 vim.keymap.set(
   "n",
   "<leader>gg",
-  ":silent !tmux popup -d <C-r>=getcwd()<cr> -w 100\\% -h 100\\% -E lazygit<cr>",
+  ":silent !tmux popup -d <C-r>=getcwd()<cr> -e PATH=$PATH -w 100\\% -h 100\\% -E lazygit<cr>",
   { desc = "Lazygit" }
 )
 
