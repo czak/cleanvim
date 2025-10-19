@@ -142,6 +142,22 @@ vim.keymap.set('n', '\\', "<cmd>NvimTreeToggle<cr>", { desc = "Toggle nvim-tree"
 
 
 -- ----------------------------------------
+-- Autocommands
+-- ----------------------------------------
+
+local augroup = vim.api.nvim_create_augroup('MyConfig', { clear = true })
+
+-- No comment continuation ever, for any language
+vim.api.nvim_create_autocmd('FileType', {
+  group = augroup,
+  pattern = '*',
+  callback = function()
+    vim.opt_local.formatoptions:remove('o')
+  end,
+})
+
+
+-- ----------------------------------------
 -- LSP
 -- ----------------------------------------
 
