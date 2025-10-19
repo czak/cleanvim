@@ -379,3 +379,5 @@ require("gitsigns").setup({
     vim.keymap.set({ 'o', 'x' }, 'ih', gitsigns.select_hunk, opts("Select hunk"))
   end
 })
+
+require("bufferline").setup({})

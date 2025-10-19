@@ -10,3 +10,6 @@
 [submodule "pack/gitsigns/start/gitsigns.nvim"]
 	path = pack/gitsigns/start/gitsigns.nvim
 	url = https://github.com/lewis6991/gitsigns.nvim.git
+[submodule "pack/bufferline/start/bufferline.nvim"]
+	path = pack/bufferline/start/bufferline.nvim
+	url = https://github.com/akinsho/bufferline.nvim.git
