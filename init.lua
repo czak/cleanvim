@@ -231,6 +231,7 @@ require("telescope").setup({
     mappings = {
       i = {
         ["<Esc>"] = telescope_actions.close,
+        ["<C-f>"] = telescope_actions.to_fuzzy_refine,
       },
     },
   },
