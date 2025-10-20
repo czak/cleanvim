@@ -140,6 +140,7 @@ vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = 'Telescope resume' })
 
 -- nvim-tree
 vim.keymap.set('n', '\\', "<cmd>NvimTreeToggle<cr>", { desc = "Toggle nvim-tree" })
+vim.keymap.set('n', '|', "<cmd>NvimTreeFindFile<cr>", { desc = "Find file in nvim-tree" })
 
 
 -- ----------------------------------------
