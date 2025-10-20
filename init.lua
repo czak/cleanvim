@@ -129,7 +129,8 @@ vim.keymap.set("n", "<leader>cr", ":luafile $MYVIMRC<CR>", { desc = "Source conf
 
 -- Telescope
 local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader><leader>', builtin.git_files, { desc = 'Telescope find files' })
+vim.keymap.set('n', '<leader><leader>', builtin.git_files, { desc = 'Telescope git files' })
+vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = 'Telescope find files' })
 vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = 'Telescope live grep' })
 vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = 'Telescope help tags' })
 vim.keymap.set('n', '<leader>sb', builtin.buffers, { desc = 'Telescope buffers' })
