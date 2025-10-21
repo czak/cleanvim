@@ -142,6 +142,10 @@ vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = 'Telescope resume' })
 vim.keymap.set('n', '\\', "<cmd>NvimTreeToggle<cr>", { desc = "Toggle nvim-tree" })
 vim.keymap.set('n', '|', "<cmd>NvimTreeFindFile<cr>", { desc = "Find file in nvim-tree" })
 
+-- Vimux
+vim.keymap.set('n', '<leader>vp', "<cmd>VimuxPromptCommand<cr>", { desc = "Vimux Prompt Command" })
+vim.keymap.set('n', '<leader>vl', "<cmd>VimuxRunLastCommand<cr>", { desc = "Vimux Run Last Command" })
+
 
 -- ----------------------------------------
 -- Autocommands
