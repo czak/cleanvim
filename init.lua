@@ -145,6 +145,7 @@ vim.keymap.set('n', '|', "<cmd>NvimTreeFindFile<cr>", { desc = "Find file in nvi
 -- Vimux
 vim.keymap.set('n', '<leader>vp', "<cmd>VimuxPromptCommand<cr>", { desc = "Vimux Prompt Command" })
 vim.keymap.set('n', '<leader>vl', "<cmd>VimuxRunLastCommand<cr>", { desc = "Vimux Run Last Command" })
+vim.keymap.set('n', '<leader>vr', "<cmd>VimuxPromptCommand('bin/rspec ' . bufname('%'))<cr>", { desc = "Vimux RSpec" })
 
 
 -- ----------------------------------------
