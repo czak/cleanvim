@@ -135,6 +135,7 @@ vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = 'Telescope live gr
 vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = 'Telescope help tags' })
 vim.keymap.set('n', '<leader>sb', builtin.buffers, { desc = 'Telescope buffers' })
 vim.keymap.set('n', '<leader>so', builtin.oldfiles, { desc = 'Telescope oldfiles' })
+vim.keymap.set('n', '<leader>sq', builtin.quickfix, { desc = 'Telescope quickfix' })
 vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = 'Telescope live grep' })
 vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = 'Telescope resume' })
 
@@ -255,8 +256,7 @@ require("telescope").setup({
       i = {
         ["<Esc>"] = telescope_actions.close,
         ["<C-f>"] = telescope_actions.to_fuzzy_refine,
-        ["<C-q>"] = telescope_actions.send_to_qflist + telescope_actions.open_qflist,
-        ["<C-S-q>"] = telescope_actions.send_selected_to_qflist + telescope_actions.open_qflist,
+        ["<C-q>"] = telescope_actions.send_selected_to_qflist,
       },
     },
   },
