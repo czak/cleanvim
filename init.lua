@@ -18,6 +18,7 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 5
 vim.opt.splitright = true
 vim.opt.splitbelow = true
+vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,t:ver25"
 
 -- Folding
 vim.opt.foldenable = true
