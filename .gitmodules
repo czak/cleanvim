@@ -19,3 +19,6 @@
 [submodule "pack/treesitter/start/nvim-treesitter"]
 	path = pack/treesitter/start/nvim-treesitter
 	url = https://github.com/nvim-treesitter/nvim-treesitter.git
+[submodule "pack/fzf-lua/start/fzf-lua"]
+	path = pack/fzf-lua/start/fzf-lua
+	url = https://github.com/ibhagwan/fzf-lua.git
