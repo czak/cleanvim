@@ -264,7 +264,7 @@ require("telescope").setup({
     buffers = {
       mappings = {
         i = {
-          ["<C-d>"] = telescope_actions.delete_buffer,
+          [""] = telescope_actions.delete_buffer,
         }
       }
     }
