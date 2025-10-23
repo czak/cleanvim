@@ -130,30 +130,6 @@ vim.keymap.set("n", "<leader>yp", ':let @+ = expand("%")<cr>', { desc = "Yank cu
 vim.keymap.set("n", "<leader>ce", ":e $MYVIMRC<CR>", { desc = "Edit config file" })
 vim.keymap.set("n", "<leader>cr", ":luafile $MYVIMRC<CR>", { desc = "Source config file" })
 
--- Telescope
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader><leader>', builtin.git_files, { desc = 'Telescope git files' })
-vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = 'Telescope find files' })
-vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = 'Telescope live grep' })
-vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = 'Telescope help tags' })
-vim.keymap.set('n', '<leader>sb', builtin.buffers, { desc = 'Telescope buffers' })
-vim.keymap.set('n', '<leader>so', builtin.oldfiles, { desc = 'Telescope oldfiles' })
-vim.keymap.set('n', '<leader>sq', builtin.quickfix, { desc = 'Telescope quickfix' })
-vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = 'Telescope live grep' })
-vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = 'Telescope resume' })
-
--- fzf-lua
-local fzflua = require('fzf-lua')
--- vim.keymap.set('n', '<leader>ff', fzflua.git_files, { desc = 'fzf-lua git files' })
-vim.keymap.set('n', '<leader>ff', fzflua.files, { desc = 'fzf-lua find files' })
-vim.keymap.set('n', '<leader>fg', fzflua.live_grep, { desc = 'fzf-lua live grep' })
-vim.keymap.set('n', '<leader>fh', fzflua.help_tags, { desc = 'fzf-lua help tags' })
-vim.keymap.set('n', '<leader>fb', fzflua.buffers, { desc = 'fzf-lua buffers' })
-vim.keymap.set('n', '<leader>fo', fzflua.oldfiles, { desc = 'fzf-lua oldfiles' })
-vim.keymap.set('n', '<leader>fq', fzflua.quickfix, { desc = 'fzf-lua quickfix' })
-vim.keymap.set('n', '<leader>fs', fzflua.builtin, { desc = 'fzf-lua live grep' })
-vim.keymap.set('n', '<leader>fr', fzflua.resume, { desc = 'fzf-lua resume' })
-
 -- nvim-tree
 vim.keymap.set('n', '\\', "<cmd>NvimTreeToggle<cr>", { desc = "Toggle nvim-tree" })
 vim.keymap.set('n', '|', "<cmd>NvimTreeFindFile<cr>", { desc = "Find file in nvim-tree" })
@@ -255,40 +231,22 @@ vim.diagnostic.config({
 
 
 -- ----------------------------------------
--- Plugins
+-- Plugin: fzf-lua
 -- ----------------------------------------
 
-local telescope_actions = require("telescope.actions")
+local fzflua = require('fzf-lua')
 
-require("telescope").setup({
-  defaults = {
-    layout_config = {
-      vertical = { width = 0.95, height = 0.95 },
-      horizontal = { width = 0.95, height = 0.95 },
-    },
-    mappings = {
-      i = {
-        ["<Esc>"] = telescope_actions.close,
-        ["<C-f>"] = telescope_actions.to_fuzzy_refine,
-        ["<C-q>"] = telescope_actions.send_selected_to_qflist,
-      },
-    },
-  },
-  pickers = {
-    buffers = {
-      mappings = {
-        i = {
-          [""] = telescope_actions.delete_buffer,
-        }
-      }
-    }
-  }
-})
+vim.keymap.set('n', '<leader><leader>', fzflua.git_files, { desc = 'fzf-lua git files' })
+vim.keymap.set('n', '<leader>ff', fzflua.files, { desc = 'fzf-lua find files' })
+vim.keymap.set('n', '<leader>fg', fzflua.live_grep, { desc = 'fzf-lua live grep' })
+vim.keymap.set('n', '<leader>fh', fzflua.help_tags, { desc = 'fzf-lua help tags' })
+vim.keymap.set('n', '<leader>fb', fzflua.buffers, { desc = 'fzf-lua buffers' })
+vim.keymap.set('n', '<leader>fo', fzflua.oldfiles, { desc = 'fzf-lua oldfiles' })
+vim.keymap.set('n', '<leader>fq', fzflua.quickfix, { desc = 'fzf-lua quickfix' })
+vim.keymap.set('n', '<leader>fs', fzflua.builtin, { desc = 'fzf-lua builtin' })
+vim.keymap.set('n', '<leader>fr', fzflua.resume, { desc = 'fzf-lua resume' })
 
-require('telescope').load_extension('fzf')
-
-local actions = require('fzf-lua').actions
-require('fzf-lua').setup({
+fzflua.setup({
   winopts = {
     height = 0.95,
     width = 0.95,
@@ -309,11 +267,11 @@ require('fzf-lua').setup({
   },
   actions = {
     files = {
-      ["enter"] = actions.file_edit,
-      ["ctrl-x"] = actions.file_split,
-      ["ctrl-v"] = actions.file_vsplit,
+      ["enter"] = fzflua.actions.file_edit,
+      ["ctrl-x"] = fzflua.actions.file_split,
+      ["ctrl-v"] = fzflua.actions.file_vsplit,
       ["ctrl-q"] = function(selected, opts)
-        opts.copen = false; actions.file_sel_to_qf(selected, opts)
+        opts.copen = false; fzflua.actions.file_sel_to_qf(selected, opts)
       end,
     },
   },
@@ -330,6 +288,11 @@ require('fzf-lua').setup({
     },
   },
 })
+
+
+-- ----------------------------------------
+-- Plugin: nvim-tree
+-- ----------------------------------------
 
 require("nvim-tree").setup({
   renderer = {
@@ -386,6 +349,11 @@ require("nvim-tree").setup({
     vim.keymap.set("n", "<2-LeftMouse>", api.node.open.edit, opts("Open"))
   end,
 })
+
+
+-- ----------------------------------------
+-- Plugin: gitsigns
+-- ----------------------------------------
 
 require("gitsigns").setup({
   -- See https://github.com/lewis6991/gitsigns.nvim?tab=readme-ov-file#-keymaps
@@ -453,6 +421,11 @@ require("gitsigns").setup({
   end
 })
 
+
+-- ----------------------------------------
+-- Plugin: nvim-treesitter
+-- ----------------------------------------
+
 require('nvim-treesitter.configs').setup {
   highlight = {
     enable = true,
@@ -463,6 +436,11 @@ require('nvim-treesitter.configs').setup {
     additional_vim_regex_highlighting = false,
   },
 }
+
+
+-- ----------------------------------------
+-- Plugin: bufferline
+-- ----------------------------------------
 
 require("bufferline").setup({
   options = {
