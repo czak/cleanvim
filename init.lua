@@ -292,6 +292,7 @@ require('fzf-lua').setup({
   winopts = {
     height = 0.95,
     width = 0.95,
+    backdrop = 100,
     preview = {
       horizontal = "right:45%",
     },
@@ -318,13 +319,13 @@ require('fzf-lua').setup({
   },
   buffers = {
     actions = {
-      ["ctrl-w"] = { fn = actions.buf_del, reload = true },
+      -- ["ctrl-w"] = { fn = actions.buf_del, reload = true },
       ["ctrl-x"] = false,
     }
   },
   quickfix = {
     actions = {
-      ["ctrl-w"] = { fn = actions.list_del, reload = true },
+      -- ["ctrl-w"] = { fn = actions.list_del, reload = true },
       ["ctrl-x"] = false,
     },
   },

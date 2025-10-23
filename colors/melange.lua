@@ -697,6 +697,62 @@ for name, attrs in pairs {
   RainbowDelimiterGreen = { fg = b.green },
   RainbowDelimiterViolet = { fg = c.magenta },
   RainbowDelimiterCyan = { fg = b.cyan },
+
+  ---- "ibhagwan/fzf-lua" -----
+
+  -- FzfLuaNormal            = {}, -- Main win `fg/bg`
+  -- FzfLuaBorder            = {}, -- Main win border
+  -- FzfLuaTitle             = {}, -- Main win title
+  -- FzfLuaTitleFlags        = {}, -- Main win title flags
+  -- FzfLuaBackdrop          = {}, -- Backdrop color
+  -- FzfLuaPreviewNormal     = {}, -- Builtin preview `fg/bg`
+  -- FzfLuaPreviewBorder     = {}, -- Builtin preview border
+  -- FzfLuaPreviewTitle      = {}, -- Builtin preview title
+  -- FzfLuaCursor            = {}, -- Builtin preview `Cursor`
+  -- FzfLuaCursorLine        = {}, -- Builtin preview `Cursorline`
+  -- FzfLuaCursorLineNr      = {}, -- Builtin preview `CursorLineNr`
+  -- FzfLuaSearch            = {}, -- Builtin preview search matches
+  -- FzfLuaScrollBorderEmpty = {}, -- Builtin preview `border` scroll empty
+  -- FzfLuaScrollBorderFull  = {}, -- Builtin preview `border` scroll full
+  -- FzfLuaScrollFloatEmpty  = {}, -- Builtin preview `float` scroll empty
+  -- FzfLuaScrollFloatFull   = {}, -- Builtin preview `float` scroll full
+  -- FzfLuaHelpNormal        = {}, -- Help win `fg/bg`
+  -- FzfLuaHelpBorder        = {}, -- Help win border
+  -- FzfLuaHeaderBind        = {}, -- Header keybind
+  -- FzfLuaHeaderText        = {}, -- Header text
+  -- FzfLuaPathColNr         = {}, -- Path col nr (`qf,lsp,diag`)
+  FzfLuaPathLineNr        = { fg = c.red }, -- Path line nr (`qf,lsp,diag`)
+  -- FzfLuaBufName           = {}, -- Buffer name (`lines`)
+  -- FzfLuaBufId             = {}, -- Buffer ID (`lines`)
+  FzfLuaBufNr             = { fg = c.blue }, -- Buffer number (`buffers,tabs`)
+  -- FzfLuaBufLineNr         = {}, -- Buffer line nr (`lines,blines`)
+  -- FzfLuaBufFlagCur        = {}, -- Buffer line (`buffers`)
+  -- FzfLuaBufFlagAlt        = {}, -- Buffer line (`buffers`)
+  -- FzfLuaTabTitle          = {}, -- Tab title (`tabs`)
+  -- FzfLuaTabMarker         = {}, -- Tab marker (`tabs`)
+  -- FzfLuaDirIcon           = {}, -- Paths directory icon
+  -- FzfLuaDirPart           = {}, -- Path formatters directory hl group
+  -- FzfLuaFilePart          = {}, -- Path formatters file hl group
+  FzfLuaLivePrompt        = 'Normal', -- "live" queries prompt text
+  -- FzfLuaLiveSym           = {}, -- LSP live symbols query match
+  -- FzfLuaCmdEx             = {}, -- Ex commands in `commands`
+  -- FzfLuaCmdBuf            = {}, -- Buffer commands in `commands`
+  -- FzfLuaCmdGlobal         = {}, -- Global commands in `commands`
+  -- FzfLuaFzfNormal         = {}, -- fzf's `fg\|bg`
+  -- FzfLuaFzfCursorLine     = {}, -- fzf's `fg+\|bg+`
+  -- FzfLuaFzfMatch          = {}, -- fzf's `hl+`
+  -- FzfLuaFzfBorder         = {}, -- fzf's `border`
+  -- FzfLuaFzfScrollbar      = {}, -- fzf's `scrollbar`
+  -- FzfLuaFzfSeparator      = {}, -- fzf's `separator`
+  -- FzfLuaFzfGutter         = {}, -- fzf's `gutter` (hl `bg` is used)
+  -- FzfLuaFzfHeader         = {}, -- fzf's `header`
+  -- FzfLuaFzfInfo           = {}, -- fzf's `info`
+  -- FzfLuaFzfPointer        = {}, -- fzf's `pointer`
+  -- FzfLuaFzfMarker         = {}, -- fzf's `marker`
+  -- FzfLuaFzfSpinner        = {}, -- fzf's `spinner`
+  -- FzfLuaFzfPrompt         = {}, -- fzf's `prompt`
+  -- FzfLuaFzfQuery          = {}, -- fzf's `header`
+
 } do
   if type(attrs) == 'table' then
     vim.api.nvim_set_hl(0, name, attrs)
