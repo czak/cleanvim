@@ -145,7 +145,7 @@ vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = 'Telescope resume' })
 -- fzf-lua
 local fzflua = require('fzf-lua')
 -- vim.keymap.set('n', '<leader>ff', fzflua.git_files, { desc = 'fzf-lua git files' })
-vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'fzf-lua find files' })
+vim.keymap.set('n', '<leader>ff', fzflua.files, { desc = 'fzf-lua find files' })
 vim.keymap.set('n', '<leader>fg', fzflua.live_grep, { desc = 'fzf-lua live grep' })
 vim.keymap.set('n', '<leader>fh', fzflua.help_tags, { desc = 'fzf-lua help tags' })
 vim.keymap.set('n', '<leader>fb', fzflua.buffers, { desc = 'fzf-lua buffers' })
@@ -296,6 +296,16 @@ require('fzf-lua').setup({
       horizontal = "right:45%",
     },
   },
+  keymap = {
+    builtin = {
+      ["<C-d>"] = "preview-page-down",
+      ["<C-u>"] = "preview-page-up",
+    },
+    fzf = {
+      ["ctrl-j"] = "half-page-down",
+      ["ctrl-k"] = "half-page-up",
+    },
+  },
   actions = {
     files = {
       ["enter"] = actions.file_edit,
@@ -308,13 +318,13 @@ require('fzf-lua').setup({
   },
   buffers = {
     actions = {
-      ["alt-bs"] = { fn = actions.buf_del, reload = true },
+      ["ctrl-w"] = { fn = actions.buf_del, reload = true },
       ["ctrl-x"] = false,
     }
   },
   quickfix = {
     actions = {
-      ["alt-bs"] = { fn = actions.list_del, reload = true },
+      ["ctrl-w"] = { fn = actions.list_del, reload = true },
       ["ctrl-x"] = false,
     },
   },
