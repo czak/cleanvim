@@ -255,6 +255,23 @@ fzflua.setup({
       horizontal = "right:45%",
     },
   },
+  fzf_colors = {
+    -- true, -- inherit fzf colors that aren't specified below from
+    -- the auto-generated theme similar to `fzf_colors=true`
+    ["fg"]      = { "fg", "Comment" },
+    ["bg"]      = { "bg", "Normal" },
+    ["hl"]      = { "fg", "Operator" },
+    ["fg+"]     = { "fg", "Normal" },
+    ["bg+"]     = { "bg", { "CursorLine", "Normal" } },
+    ["hl+"]     = { "fg", "Operator" },
+    ["info"]    = { "fg", "PreProc" },
+    ["prompt"]  = { "fg", "Conditional" },
+    ["pointer"] = { "fg", "Exception" },
+    ["marker"]  = { "fg", "Keyword" },
+    ["spinner"] = { "fg", "Label" },
+    ["header"]  = { "fg", "Comment" },
+    ["gutter"]  = "-1",
+  },
   keymap = {
     builtin = {
       ["<C-d>"] = "preview-page-down",
