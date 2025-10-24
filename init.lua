@@ -123,7 +123,7 @@ vim.keymap.set(
 
 -- Buffer management
 vim.keymap.set("n", "<leader>bd", "<cmd>bd<CR>", { desc = "Close buffer" })
-vim.keymap.set("n", "<leader>bD", "<cmd>%bd<CR>", { desc = "Close all buffers" })
+vim.keymap.set("n", "<leader>bD", "<cmd>%bd!<CR>", { desc = "Close all buffers" })
 vim.keymap.set("n", "<leader>yp", ':let @+ = expand("%")<cr>', { desc = "Yank current buffer path" })
 
 -- Config file
