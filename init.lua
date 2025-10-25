@@ -168,39 +168,54 @@ vim.api.nvim_create_autocmd('FileType', {
 -- See capabilities for a given server, do this in an LSP-enabled buffer:
 -- :lua =vim.lsp.get_clients()[1].server_capabilities
 
+local function show_signature()
+  vim.lsp.buf.signature_help({
+    close_events = { "CursorMoved" },
+    focusable = false,
+  })
+end
+
+local function on_attach(client, bufnr)
+  vim.keymap.set("i", "<C-Space>", show_signature, { buffer = true, desc = "LSP: Show signature" })
+
+  -- Completion on server-defined trigger keys
+  if client:supports_method('textDocument/completion') then
+    vim.lsp.completion.enable(true, client.id, bufnr, { autotrigger = true })
+  end
+
+  -- Auto trigger signature help
+  if client:supports_method('textDocument/signatureHelp') then
+    vim.api.nvim_create_autocmd('CursorHoldI', {
+      buffer = bufnr,
+      callback = show_signature,
+    })
+  end
+
+  -- Auto format on save
+  if client:supports_method('textDocument/formatting') then
+    vim.api.nvim_create_autocmd('BufWritePre', {
+      buffer = bufnr,
+      callback = function()
+        vim.lsp.buf.format({ bufnr = bufnr, id = client.id, timeout_ms = 1000 })
+      end,
+    })
+  end
+end
+
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = augroup,
+  callback = function(args)
+    local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+    on_attach(client, args.buf)
+  end,
+})
+
 vim.lsp.enable({
   "gopls",
   "lua_ls",
-  -- "rubocop", -- ruby_lsp invokes Rubocop too
   "ruby_lsp",
   "tailwindcss",
   "vtsls",
-})
-
--- See https://neovim.io/doc/user/lsp.html#lsp-attach
-vim.api.nvim_create_autocmd('LspAttach', {
-  group = vim.api.nvim_create_augroup('my.lsp', {}),
-  callback = function(args)
-    local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
-
-    -- Enable auto-completion
-    if client:supports_method('textDocument/completion') then
-      vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
-    end
-
-    -- Auto-format ("lint") on save.
-    -- Usually not needed if server supports "textDocument/willSaveWaitUntil".
-    if not client:supports_method('textDocument/willSaveWaitUntil')
-        and client:supports_method('textDocument/formatting') then
-      vim.api.nvim_create_autocmd('BufWritePre', {
-        group = vim.api.nvim_create_augroup('my.lsp', { clear = false }),
-        buffer = args.buf,
-        callback = function()
-          vim.lsp.buf.format({ bufnr = args.buf, id = client.id, timeout_ms = 1000 })
-        end,
-      })
-    end
-  end,
 })
 
 
