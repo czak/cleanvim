@@ -59,7 +59,6 @@ vim.opt.exrc = true
 
 -- Completion & popup styles
 vim.opt.completeopt = { 'menu', 'menuone', 'noinsert', 'fuzzy', 'popup' }
-vim.opt.showmode = false
 vim.opt.pumheight = 10
 vim.opt.pumblend = 10
 vim.opt.winblend = 10
