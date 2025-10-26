@@ -170,7 +170,7 @@ vim.api.nvim_create_autocmd('FileType', {
 
 local function show_signature()
   vim.lsp.buf.signature_help({
-    close_events = { "CursorMoved" },
+    close_events = { "InsertLeave" },
     focusable = false,
   })
 end
@@ -180,16 +180,19 @@ local function on_attach(client, bufnr)
 
   -- Completion on server-defined trigger keys
   if client:supports_method('textDocument/completion') then
+    -- Optional: trigger autocompletion on EVERY keypress. May be slow!
+    -- local chars = {}; for i = 32, 126 do table.insert(chars, string.char(i)) end
+    -- client.server_capabilities.completionProvider.triggerCharacters = chars
     vim.lsp.completion.enable(true, client.id, bufnr, { autotrigger = true })
   end
 
   -- Auto trigger signature help
-  if client:supports_method('textDocument/signatureHelp') then
-    vim.api.nvim_create_autocmd('CursorHoldI', {
-      buffer = bufnr,
-      callback = show_signature,
-    })
-  end
+  -- if client:supports_method('textDocument/signatureHelp') then
+  --   vim.api.nvim_create_autocmd('CursorHoldI', {
+  --     buffer = bufnr,
+  --     callback = show_signature,
+  --   })
+  -- end
 
   -- Auto format on save
   if client:supports_method('textDocument/formatting') then
