@@ -52,7 +52,6 @@ vim.opt.gdefault = true
 
 -- Performance and timing
 vim.opt.updatetime = 250
-vim.opt.timeoutlen = 300
 
 -- Enable per-project configuration files (.nvimrc, .nvim.lua)
 vim.opt.exrc = true
