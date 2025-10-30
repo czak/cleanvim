@@ -310,13 +310,13 @@ fzflua.setup({
   },
   buffers = {
     actions = {
-      -- ["ctrl-w"] = { fn = actions.buf_del, reload = true },
+      ["del"] = { fn = fzflua.actions.buf_del, reload = true },
       ["ctrl-x"] = false,
     }
   },
   quickfix = {
     actions = {
-      -- ["ctrl-w"] = { fn = actions.list_del, reload = true },
+      ["del"] = { fn = fzflua.actions.list_del, reload = true },
       ["ctrl-x"] = false,
     },
   },
