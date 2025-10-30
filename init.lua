@@ -320,6 +320,12 @@ fzflua.setup({
       ["ctrl-x"] = false,
     },
   },
+  blines = {
+    previewer = false,
+  },
+  lines = {
+    previewer = false,
+  },
 })
 
 
