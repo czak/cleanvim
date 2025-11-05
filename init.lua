@@ -137,6 +137,9 @@ vim.keymap.set('n', '|', "<cmd>NvimTreeFindFile<cr>", { desc = "Find file in nvi
 vim.keymap.set('n', '<leader>vp', "<cmd>VimuxPromptCommand<cr>", { desc = "Vimux Prompt Command" })
 vim.keymap.set('n', '<leader>vl', "<cmd>VimuxRunLastCommand<cr>", { desc = "Vimux Run Last Command" })
 
+vim.keymap.set('n', '<leader>gO', require('gitlinker').open)
+vim.keymap.set('n', '<leader>gY', require('gitlinker').copy)
+
 
 -- ----------------------------------------
 -- Autocommands
