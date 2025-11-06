@@ -150,8 +150,9 @@ vim.keymap.set('n', '<leader>vp', "<cmd>VimuxPromptCommand<cr>", { desc = "Vimux
 vim.keymap.set('n', '<leader>vl', "<cmd>VimuxRunLastCommand<cr>", { desc = "Vimux Run Last Command" })
 
 -- Github link open/yank
-vim.keymap.set('n', '<leader>gO', require('gitlinker').open)
-vim.keymap.set('n', '<leader>gY', require('gitlinker').copy)
+local gitlinker = require('gitlinker')
+vim.keymap.set({ 'n', 'v' }, '<leader>go', gitlinker.open)
+vim.keymap.set({ 'n', 'v' }, '<leader>gy', gitlinker.yank)
 
 -- Tab navigation
 vim.keymap.set('n', ']t', "<cmd>tabnext<cr>", { desc = "Next tab" })
