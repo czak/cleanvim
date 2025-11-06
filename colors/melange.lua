@@ -753,6 +753,11 @@ for name, attrs in pairs {
   -- FzfLuaFzfPrompt         = {}, -- fzf's `prompt`
   -- FzfLuaFzfQuery          = {}, -- fzf's `header`
 
+  ---- "akinsho/bufferline.nvim" -----
+
+  BufferLineTab = 'BufferLineBuffer',
+  BufferLineTabSelected = 'BufferLineBufferSelected',
+
 } do
   if type(attrs) == 'table' then
     vim.api.nvim_set_hl(0, name, attrs)
