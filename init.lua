@@ -25,6 +25,7 @@ vim.opt.termguicolors = true
 vim.opt.foldenable = true
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+-- vim.opt.foldexpr = "v:lua.vim.lsp.foldexpr()"
 vim.opt.foldlevel = 99
 
 -- Display invisible chars (I only really want trailing space)
