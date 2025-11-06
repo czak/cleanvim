@@ -149,8 +149,13 @@ vim.keymap.set('n', '|', "<cmd>NvimTreeFindFile<cr>", { desc = "Find file in nvi
 vim.keymap.set('n', '<leader>vp', "<cmd>VimuxPromptCommand<cr>", { desc = "Vimux Prompt Command" })
 vim.keymap.set('n', '<leader>vl', "<cmd>VimuxRunLastCommand<cr>", { desc = "Vimux Run Last Command" })
 
+-- Github link open/yank
 vim.keymap.set('n', '<leader>gO', require('gitlinker').open)
 vim.keymap.set('n', '<leader>gY', require('gitlinker').copy)
+
+-- Tab navigation
+vim.keymap.set('n', ']t', "<cmd>tabnext<cr>", { desc = "Next tab" })
+vim.keymap.set('n', '[t', "<cmd>tabprevious<cr>", { desc = "Previous tab" })
 
 
 -- ----------------------------------------
@@ -262,9 +267,9 @@ vim.diagnostic.config({
 })
 
 
--- ----------------------------------------
--- Plugin: fzf-lua
--- ----------------------------------------
+-- -------------------------------------------
+-- Plugin: https://github.com/ibhagwan/fzf-lua
+-- -------------------------------------------
 
 local fzflua = require('fzf-lua')
 
@@ -319,6 +324,7 @@ fzflua.setup({
       ["enter"] = fzflua.actions.file_edit,
       ["ctrl-x"] = fzflua.actions.file_split,
       ["ctrl-v"] = fzflua.actions.file_vsplit,
+      ["ctrl-t"] = fzflua.actions.file_tabedit,
       ["ctrl-q"] = function(selected, opts)
         opts.copen = false; fzflua.actions.file_sel_to_qf(selected, opts)
       end,
@@ -327,13 +333,13 @@ fzflua.setup({
   buffers = {
     actions = {
       ["del"] = { fn = fzflua.actions.buf_del, reload = true },
-      ["ctrl-x"] = false,
+      ["ctrl-x"] = fzflua.actions.file_split,
     }
   },
   quickfix = {
     actions = {
       ["del"] = { fn = fzflua.actions.list_del, reload = true },
-      ["ctrl-x"] = false,
+      ["ctrl-x"] = fzflua.actions.file_split,
     },
   },
   blines = {
@@ -345,9 +351,9 @@ fzflua.setup({
 })
 
 
--- ----------------------------------------
--- Plugin: nvim-tree
--- ----------------------------------------
+-- --------------------------------------------------
+-- Plugin: https://github.com/nvim-tree/nvim-tree.lua
+-- --------------------------------------------------
 
 require("nvim-tree").setup({
   renderer = {
@@ -406,9 +412,9 @@ require("nvim-tree").setup({
 })
 
 
--- ----------------------------------------
--- Plugin: gitsigns
--- ----------------------------------------
+-- --------------------------------------------------
+-- Plugin: https://github.com/lewis6991/gitsigns.nvim
+-- --------------------------------------------------
 
 require("gitsigns").setup({
   -- See https://github.com/lewis6991/gitsigns.nvim?tab=readme-ov-file#-keymaps
@@ -477,9 +483,9 @@ require("gitsigns").setup({
 })
 
 
--- ----------------------------------------
--- Plugin: nvim-treesitter
--- ----------------------------------------
+-- ----------------------------------------------------------
+-- Plugin: https://github.com/nvim-treesitter/nvim-treesitter
+-- ----------------------------------------------------------
 
 require('nvim-treesitter.configs').setup {
   highlight = {
@@ -493,12 +499,19 @@ require('nvim-treesitter.configs').setup {
 }
 
 
--- ----------------------------------------
--- Plugin: bufferline
--- ----------------------------------------
+-- --------------------------------------------------
+-- Plugin: https://github.com/akinsho/bufferline.nvim
+-- --------------------------------------------------
 
 require("bufferline").setup({
   options = {
-    always_show_bufferline = false,
+    always_show_bufferline = true,
   },
 })
+
+
+-- ----------------------------------------------
+-- Plugin: https://github.com/tiagovla/scope.nvim
+-- ----------------------------------------------
+
+require("scope").setup({})

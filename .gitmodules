@@ -13,3 +13,6 @@
 [submodule "pack/fzf-lua/start/fzf-lua"]
 	path = pack/fzf-lua/start/fzf-lua
 	url = https://github.com/ibhagwan/fzf-lua.git
+[submodule "pack/bufferline/start/scope.nvim"]
+	path = pack/bufferline/start/scope.nvim
+	url = https://github.com/tiagovla/scope.nvim.git
