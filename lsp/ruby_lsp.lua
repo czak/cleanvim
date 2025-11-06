@@ -12,7 +12,7 @@ return {
       "documentLink",
       "documentSymbols",
       "foldingRanges",
-      "formatting",
+      -- "formatting",
       "hover",
       "inlayHint",
       "onTypeFormatting",
