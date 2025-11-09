@@ -120,7 +120,7 @@ vim.keymap.set("n", "<C-s>", "<cmd>w<CR>", { desc = "Save file" })
 vim.keymap.set("i", "<C-s>", "<Esc><cmd>w<CR>", { desc = "Save file" })
 
 -- Quit
-vim.keymap.set("n", "<leader>qq", "<cmd>qa<CR>", { desc = "Quit application" })
+vim.keymap.set("n", "<leader>qq", "<cmd>qa!<CR>", { desc = "Quit application" })
 
 -- Toggle background
 vim.keymap.set("n", "<leader>tb", function()
