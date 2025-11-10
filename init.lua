@@ -76,6 +76,13 @@ vim.filetype.add({
   },
 })
 
+-- Prevent vim-ruby from setting custom mappings
+-- (mostly due to conflicting <C-]> mapping)
+vim.g.no_ruby_maps = true
+
+-- Don't indent begin...end or do...end block contents
+vim.g.ruby_indent_assignment_style = "variable"
+
 
 -- ----------------------------------------
 -- Keymaps
@@ -83,10 +90,6 @@ vim.filetype.add({
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-
--- Prevent vim-ruby from setting custom mappings
--- (mostly due to conflicting <C-]> mapping)
-vim.g.no_ruby_maps = true
 
 -- Navigate visual lines instead of logical lines
 vim.keymap.set("n", "j", "gj")
