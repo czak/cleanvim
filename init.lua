@@ -154,6 +154,10 @@ local gitlinker = require('gitlinker')
 vim.keymap.set({ 'n', 'v' }, '<leader>go', gitlinker.open)
 vim.keymap.set({ 'n', 'v' }, '<leader>gy', gitlinker.yank)
 
+-- Path link yank
+local pathlinker = require('pathlinker')
+vim.keymap.set({ 'n', 'v' }, '<leader>py', pathlinker.yank)
+
 -- Tab navigation
 vim.keymap.set('n', ']t', "<cmd>tabnext<cr>", { desc = "Next tab" })
 vim.keymap.set('n', '[t', "<cmd>tabprevious<cr>", { desc = "Previous tab" })
