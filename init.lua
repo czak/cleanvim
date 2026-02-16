@@ -282,6 +282,7 @@ vim.diagnostic.config({
 local fzflua = require('fzf-lua')
 
 vim.keymap.set('n', '<leader><leader>', fzflua.git_files, { desc = 'fzf-lua git files' })
+vim.keymap.set('n', '<leader>f<leader>', fzflua.builtin, { desc = 'fzf-lua builtin' })
 vim.keymap.set('n', '<leader>ff', fzflua.files, { desc = 'fzf-lua find files' })
 vim.keymap.set('n', '<leader>fg', fzflua.live_grep, { desc = 'fzf-lua live grep' })
 vim.keymap.set('n', '<leader>fh', fzflua.help_tags, { desc = 'fzf-lua help tags' })
@@ -290,7 +291,7 @@ vim.keymap.set('n', '<leader>fl', fzflua.blines, { desc = 'fzf-lua blines' })
 vim.keymap.set('n', '<leader>fm', fzflua.marks, { desc = 'fzf-lua marks' })
 vim.keymap.set('n', '<leader>fo', fzflua.oldfiles, { desc = 'fzf-lua oldfiles' })
 vim.keymap.set('n', '<leader>fq', fzflua.quickfix, { desc = 'fzf-lua quickfix' })
-vim.keymap.set('n', '<leader>fs', fzflua.builtin, { desc = 'fzf-lua builtin' })
+vim.keymap.set('n', '<leader>fs', fzflua.git_status, { desc = 'fzf-lua git status' })
 vim.keymap.set('n', '<leader>fr', fzflua.resume, { desc = 'fzf-lua resume' })
 
 fzflua.setup({
