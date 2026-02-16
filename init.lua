@@ -281,7 +281,7 @@ vim.diagnostic.config({
 
 local fzflua = require('fzf-lua')
 
-vim.keymap.set('n', '<leader><leader>', fzflua.git_files, { desc = 'fzf-lua git files' })
+vim.keymap.set('n', '<leader><leader>', fzflua.files, { desc = 'fzf-lua files' })
 vim.keymap.set('n', '<leader>f<leader>', fzflua.builtin, { desc = 'fzf-lua builtin' })
 vim.keymap.set('n', '<leader>ff', fzflua.files, { desc = 'fzf-lua find files' })
 vim.keymap.set('n', '<leader>fg', fzflua.live_grep, { desc = 'fzf-lua live grep' })
