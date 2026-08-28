@@ -1,5 +1,6 @@
 return {
   cmd = { 'ruby-lsp' },
+  cmd_env = { RUBY_LSP_BYPASS_TYPECHECKER = 'true' },
   filetypes = { 'ruby', 'eruby' },
   init_options = {
     enabledFeatures = {
