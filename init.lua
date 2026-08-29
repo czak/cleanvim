@@ -181,6 +181,16 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
+-- Enable Treesitter
+vim.api.nvim_create_autocmd('FileType', {
+  group = augroup,
+  pattern = { 'ruby', 'lua', 'yaml', 'json' },
+  callback = function()
+    vim.schedule(function()
+      vim.treesitter.start()
+    end)
+  end,
+})
 
 -- ----------------------------------------
 -- LSP
