@@ -184,7 +184,7 @@ vim.api.nvim_create_autocmd('FileType', {
 -- Enable Treesitter
 vim.api.nvim_create_autocmd('FileType', {
   group = augroup,
-  pattern = { 'ruby', 'lua', 'yaml', 'json' },
+  pattern = { 'ruby', 'lua', 'yaml', 'json', 'go', 'cpp' },
   callback = function()
     vim.schedule(function()
       vim.treesitter.start()
@@ -257,6 +257,7 @@ vim.lsp.enable({
   "ruby_lsp",
   "tailwindcss",
   "vtsls",
+  "clangd",
 })
 
 
