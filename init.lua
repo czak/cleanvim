@@ -184,7 +184,7 @@ vim.api.nvim_create_autocmd('FileType', {
 -- Enable Treesitter
 vim.api.nvim_create_autocmd('FileType', {
   group = augroup,
-  pattern = { 'ruby', 'lua', 'yaml', 'json', 'go', 'cpp' },
+  pattern = { 'ruby', 'lua', 'yaml', 'json', 'go', 'cpp', 'rust' },
   callback = function()
     vim.schedule(function()
       vim.treesitter.start()
@@ -215,6 +215,20 @@ end
 
 local function on_attach(client, bufnr)
   vim.keymap.set("i", "<C-Space>", show_signature, { buffer = true, desc = "LSP: Show signature" })
+
+  local fzflua = require('fzf-lua')
+  vim.keymap.set('n', 'gra', fzflua.lsp_code_actions)
+  vim.keymap.set('n', 'grr', fzflua.lsp_references)
+
+  vim.keymap.set('n', '<leader>ls', fzflua.lsp_document_symbols)
+  vim.keymap.set('n', '<leader>lw', fzflua.lsp_live_workspace_symbols)
+  vim.keymap.set('n', '<leader>la', fzflua.lsp_code_actions)
+  vim.keymap.set('n', '<leader>lr', fzflua.lsp_references)
+  vim.keymap.set('n', '<leader>ld', fzflua.lsp_definitions)
+  vim.keymap.set('n', '<leader>lt', fzflua.lsp_typedefs)
+  vim.keymap.set('n', '<leader>li', fzflua.lsp_implementations)
+  vim.keymap.set('n', '<leader>ll', fzflua.lsp_document_symbols)
+  vim.keymap.set('n', '<leader>lD', fzflua.lsp_declarations)
 
   -- Completion on server-defined trigger keys
   if client:supports_method('textDocument/completion') then
@@ -258,6 +272,7 @@ vim.lsp.enable({
   "tailwindcss",
   "vtsls",
   "clangd",
+  "rust_analyzer"
 })
 
 
